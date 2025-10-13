@@ -9,19 +9,19 @@ import hero4 from "@/assets/hero-4.jpg";
 const slides = [
   {
     image: hero1,
-    quote: "Let's turn waste into worth.",
+    quote: "Meeting Solid Waste Management needs of Bengaluru",
   },
   {
     image: hero2,
-    quote: "Recycling today for a greener tomorrow.",
+    quote: "India's waste tech park pioneer leading the pack in integrated solid waste management",
   },
   {
     image: hero3,
-    quote: "Sustainability starts with responsibility.",
+    quote: "Turning life-threatening waste into enlivening",
   },
   {
     image: hero4,
-    quote: "Together, we build a cleaner planet.",
+    quote: "Keeping the environment healthy and economy sustainable",
   },
 ];
 
