@@ -40,7 +40,7 @@ const Navbar = () => {
             </a>
           </div>
           <div className="flex gap-3">
-            <a href="#" className="hover:text-secondary transition-colors">
+            <a href="https://www.facebook.com/people/MSGP-Infra-Tech-Pvt-Ltd/100079226423204/" className="hover:text-secondary transition-colors">
               <Facebook size={16} />
             </a>
             <a href="#" className="hover:text-secondary transition-colors">
