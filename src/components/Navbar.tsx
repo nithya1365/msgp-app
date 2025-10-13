@@ -68,11 +68,11 @@ const Navbar = () => {
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
             <a
-              href="#home"
-              className="text-2xl font-bold text-primary transition-transform hover:scale-105"
-            >
-              MSGP
-            </a>
+  href="#home"
+  className="text-2xl font-bold text-primary transition-transform hover:scale-105"
+>
+  <img src="src/assets/logo.png" alt="MSGP Logo" className="h-10 w-auto inline-block" />
+</a>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex gap-8 items-center">
