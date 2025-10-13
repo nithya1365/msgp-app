@@ -1,9 +1,6 @@
 const Certifications = () => {
   const certifications = [
-    { id: 1, name: "ISO 9001" },
-    { id: 2, name: "ISO 14001" },
-    { id: 3, name: "Green Certified" },
-    { id: 4, name: "Eco Label" },
+    { id: 1, name: "ISO 9001:2015" },
   ];
 
   return (
@@ -18,7 +15,9 @@ const Certifications = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="text-center">
-                <div className="text-6xl mb-4 group-hover:animate-float">🏆</div>
+              <div className="text-6xl mb-4 group-hover:animate-float">
+  <img src="iso.jpg" alt="icon" className="w-24 h-24 mx-auto rounded-full" />
+</div>
                 <p className="font-semibold text-lg">{cert.name}</p>
               </div>
             </div>
