@@ -3,25 +3,26 @@ import { Target, Users, Lightbulb, Heart } from "lucide-react";
 const missions = [
   {
     icon: Target,
-    title: "Zero Waste Goal",
-    description: "Working towards a future where waste is completely eliminated through efficient recycling and circular economy practices.",
+    title: "Waste Collection & Processing",
+    description: "Efficiently collect, segregate, and process MSW in Bengaluru, producing compost, vermi-compost, and RDF.",
   },
   {
     icon: Users,
-    title: "Community Engagement",
-    description: "Empowering communities with knowledge and resources to participate actively in sustainable waste management.",
+    title: "Recycled Products & Market",
+    description: "Serve farmers, agriculture departments, and fertilizer companies while promoting sustainable recycled products.",
   },
   {
     icon: Lightbulb,
-    title: "Innovation First",
-    description: "Continuously developing and implementing cutting-edge technologies for waste processing and environmental conservation.",
+    title: "Awareness & Education",
+    description: "Educate communities, corporates, and schools on segregation, cleanliness, and responsible waste management.",
   },
   {
     icon: Heart,
-    title: "Environmental Care",
-    description: "Protecting our planet through responsible waste management and promoting biodiversity conservation.",
+    title: "Innovation & Pilot Projects",
+    description: "Showcase recycling methods and provide proactive solutions at the MSGP Material Recovery Facility.",
   },
 ];
+
 
 const Mission = () => {
   return (
