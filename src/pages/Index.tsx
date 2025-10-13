@@ -10,6 +10,7 @@ import PartnersCarousel from "@/components/PartnersCarousel";
 import Certifications from "@/components/Certifications";
 import JoinMission from "@/components/JoinMission";
 import Footer from "@/components/Footer";
+import MSGPFigures from "@/components/MSGPFigures";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <QuoteSection />
       <FeatureCards />
       <CompanyOverview />
+      <MSGPFigures/>
       <FacilityFacts />
       <Gallery />
       <Mission />

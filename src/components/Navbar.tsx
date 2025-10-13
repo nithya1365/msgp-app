@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Phone, Mail, Facebook, Instagram, Linkedin, Menu, X } from "lucide-react";
+import { Phone, Mail, Facebook, Instagram, Linkedin,Youtube, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
@@ -32,7 +32,7 @@ const Navbar = () => {
           <div className="flex gap-4 items-center">
             <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-secondary transition-colors">
               <Phone size={14} />
-              <span className="hidden sm:inline">+91 (123) 456-7890</span>
+              <span className="hidden md:inline">+080-22266769</span>
             </a>
             <a href="mailto:info@msgp.co.in" className="flex items-center gap-2 hover:text-secondary transition-colors">
               <Mail size={14} />
@@ -40,7 +40,7 @@ const Navbar = () => {
             </a>
           </div>
           <div className="flex gap-3">
-            <a href="#" className="hover:text-secondary transition-colors">
+            <a href="https://www.facebook.com/people/MSGP-Infra-Tech-Pvt-Ltd/100079226423204/" className="hover:text-secondary transition-colors">
               <Facebook size={16} />
             </a>
             <a href="#" className="hover:text-secondary transition-colors">
@@ -48,6 +48,9 @@ const Navbar = () => {
             </a>
             <a href="#" className="hover:text-secondary transition-colors">
               <Linkedin size={16} />
+            </a>
+            <a href="#" className="hover:text-secondary transition-colors">
+              <Youtube size={16} />
             </a>
           </div>
         </div>
@@ -65,11 +68,11 @@ const Navbar = () => {
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
             <a
-              href="#home"
-              className="text-2xl font-bold text-primary transition-transform hover:scale-105"
-            >
-              MSGP
-            </a>
+  href="#home"
+  className="text-2xl font-bold text-primary transition-transform hover:scale-105"
+>
+  <img src="src/assets/logo.png" alt="MSGP Logo" className="h-10 w-auto inline-block" />
+</a>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex gap-8 items-center">

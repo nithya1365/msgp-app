@@ -19,20 +19,13 @@ const CompanyOverview = () => {
               Company Overview
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              MSGP (Material Solutions for Green Planet) is a pioneering waste management company 
-              committed to creating sustainable solutions for environmental challenges. We specialize 
-              in comprehensive waste processing, recycling, and organic waste conversion.
+              MSGP Infra Tech Pvt. Ltd, meets the Solid Waste Management (SWM) needs of urban Bengaluru. The first in India to set up a WASTE TECH PARK, MSGP is equipped with the state-of-the-art technology and a large facility to recycle waste into useful products.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              With state-of-the-art facilities and innovative technologies, we transform waste into 
-              valuable resources, contributing to a cleaner, greener planet. Our mission is to lead 
-              the circular economy revolution while empowering communities through awareness and 
-              sustainable practices.
+              MSGP stays invested in resource recovery out of both mixed and segregated waste that Bengaluru city churns out. MSGP WASTE TECH PARK produces compost out of Solid Waste. The PARK includes capability to produce sustainable energy out of waste and to recycle plastic into usable products.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              From industrial waste management to community composting programs, MSGP delivers 
-              end-to-end solutions that make environmental responsibility accessible and achievable 
-              for everyone.
+              MSGP receives and processes over 750 metric tons of garbage per day from out of over 5000 tons that Bengaluru’s population generates every single day.
             </p>
             <Button
               size="lg"

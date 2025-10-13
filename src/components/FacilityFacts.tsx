@@ -1,119 +1,65 @@
-import { useEffect, useState, useRef } from "react";
-import { Trash2, BarChart3, Package, Calendar } from "lucide-react";
-
-const stats = [
-  { icon: Trash2, label: "Total Waste Handled", value: 50000, suffix: " tons" },
-  { icon: BarChart3, label: "Processed Waste", value: 45000, suffix: " tons" },
-  { icon: Package, label: "Compost in Stock", value: 12000, suffix: " tons" },
-  { icon: Calendar, label: "Days of Operation", value: 1825, suffix: " days" },
-];
+import { Button } from "@/components/ui/button";
+import hero2 from "@/assets/waste_manage.jpeg";
 
 const FacilityFacts = () => {
-  const [counts, setCounts] = useState(stats.map(() => 0));
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          stats.forEach((stat, index) => {
-            const duration = 2000;
-            const steps = 60;
-            const stepValue = stat.value / steps;
-            let currentStep = 0;
-
-            const interval = setInterval(() => {
-              currentStep++;
-              setCounts((prev) => {
-                const newCounts = [...prev];
-                newCounts[index] = Math.min(Math.round(stepValue * currentStep), stat.value);
-                return newCounts;
-              });
-
-              if (currentStep >= steps) {
-                clearInterval(interval);
-              }
-            }, duration / steps);
-          });
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasAnimated]);
-
   return (
-    <section ref={sectionRef} id="facilities" className="py-20 bg-accent text-accent-foreground relative overflow-hidden">
-      {/* Animated background particles */}
-      <div className="absolute inset-0 opacity-10">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-primary rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.3}s`,
-            }}
-          />
-        ))}
-      </div>
+    <section
+      id="facility-facts"
+      className="py-20"
+      style={{ backgroundColor: "rgb(240, 245, 240)" }}
+    >
+      <div className="container mx-auto px-4">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Image Section */}
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300" />
+            <img
+              src={hero2}
+              alt="MSGP Waste Tech Park Facility"
+              className="relative rounded-2xl shadow-[var(--shadow-3d)] w-full h-auto object-cover"
+            />
+          </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-4xl font-bold text-center mb-4">
-          Facility Facts & MSGP Figures
-        </h2>
-        <div className="w-24 h-1 bg-primary mx-auto mb-16 rounded-full" />
+          {/* Text Section */}
+          <div className="space-y-6 animate-slide-in">
+            <h2 className="text-4xl font-bold text-foreground">
+              FACILITY FACTS
+            </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="text-center group animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              MSGP employs modern technology to turn Municipal Solid Waste into
+              useful products in its WASTE TECH PARK in Doddaballapur over an
+              hour and a half drive from Bengaluru city. The PARK employs high
+              rate mechanical aerobic composting techniques to produce compost
+              out of solid waste. The compost is distributed across Karnataka.
+            </p>
+
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              MSGP WASTE TECH PARK; The first of its kind in India, is located
+              in Chiguranahalli Village, Doddaballapura Taluk, near Bengaluru.
+              With a Municipal Solid Waste Concession from Bruhut Bengaluru
+              Mahanagara Palike (BBMP) for 500 tons per day, MSGP remains
+              committed to turning the life-threatening garbage into useful
+              products and eco-friendly energy.
+            </p>
+
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Currently MSGP receives over 750 tons of Municipal Solid Waste per
+              day from Bulk Generators.
+            </p>
+
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              MSGP WASTE TECH PARK is being developed into a tourist attraction
+              and a centre of education.
+            </p>
+
+            <Button
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-[var(--shadow-soft)]"
             >
-              <div className="relative inline-block mb-6">
-                {/* Circular progress ring */}
-                <svg className="w-32 h-32 transform -rotate-90">
-                  <circle
-                    cx="64"
-                    cy="64"
-                    r="56"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    fill="none"
-                    className="opacity-20"
-                  />
-                  <circle
-                    cx="64"
-                    cy="64"
-                    r="56"
-                    stroke="hsl(var(--primary))"
-                    strokeWidth="4"
-                    fill="none"
-                    strokeDasharray={`${2 * Math.PI * 56}`}
-                    strokeDashoffset={`${2 * Math.PI * 56 * (1 - (hasAnimated ? 1 : 0))}`}
-                    className="transition-all duration-2000"
-                    style={{ filter: 'drop-shadow(0 0 8px hsl(var(--primary)))' }}
-                  />
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <stat.icon size={40} className="text-primary group-hover:animate-float" />
-                </div>
-              </div>
-              <div className="text-5xl font-bold mb-2 text-primary animate-count-up">
-                {counts[index].toLocaleString()}{stat.suffix}
-              </div>
-              <div className="text-lg font-medium opacity-90">{stat.label}</div>
-            </div>
-          ))}
+              Learn More
+            </Button>
+          </div>
         </div>
       </div>
     </section>
