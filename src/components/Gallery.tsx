@@ -1,94 +1,109 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import {
+  BsFillArrowRightCircleFill,
+  BsFillArrowLeftCircleFill,
+} from "react-icons/bs";
 
-const Gallery = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+import hero3 from "@/assets/hero-3.jpg";
+import hero4 from "@/assets/hero-4.jpg";
+import overview from "@/assets/company-overview.jpg";
 
-  // Placeholder images - in production, these would be real facility photos
-  const images = [
-    { id: 1, category: "Facilities" },
-    { id: 2, category: "Awareness" },
-    { id: 3, category: "Products" },
-    { id: 4, category: "Facilities" },
-    { id: 5, category: "Products" },
-    { id: 6, category: "Awareness" },
-  ];
+const slides = [hero1, hero2, hero3, hero4, overview];
 
-  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % images.length);
-  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+export default function Gallery() {
+  const [current, setCurrent] = useState(0);
+
+  const previousSlide = () => setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  const nextSlide = () => setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+
+  useEffect(() => {
+    const interval = setInterval(() => setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1)), 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <section id="gallery" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-16">Gallery</h2>
+    <section className="relative bg-white pt-16 pb-36 overflow-hidden flex flex-col items-center">
+      {/* Heading */}
+      <div className="text-center mb-12">
+        <h2 className="text-5xl font-bold text-gray-900 tracking-wide">
+          Nature Gallery
+        </h2>
+        <p className="text-gray-600 mt-2 text-lg">
+          Discover the beauty of sustainability 🌿
+        </p>
+      </div>
 
-        {/* 3D Carousel */}
-        <div className="relative h-96 perspective-1000">
-          <div className="relative h-full flex items-center justify-center">
-            {images.map((image, index) => {
-              const offset = (index - currentIndex + images.length) % images.length;
-              const isCenter = offset === 0;
-              
+      {/* Carousel Wrapper */}
+      <div className="relative w-full max-w-[64rem] mx-auto flex flex-col items-center">
+        {/* 3D Carousel Stage */}
+        <div className="relative h-[26rem] sm:h-[30rem] w-full flex items-center justify-center perspective-[1200px] -mt-48 sm:-mt-56 -translate-x-[9rem] sm:-translate-x-[13rem]">
+          <div className="relative h-full w-full">
+            {slides.map((s, i) => {
+              const n = slides.length;
+              const raw = (i - current + n) % n;
+              const half = Math.floor(n / 2);
+              const offset = raw > half ? raw - n : raw;
+              const abs = Math.abs(offset);
+              const translateX = offset * 170;
+              const rotateY = -22 * offset;
+              const scale = abs === 0 ? 1 : abs === 1 ? 0.9 : abs === 2 ? 0.8 : 0.72;
+              const opacity = abs === 0 ? 1 : abs === 1 ? 0.95 : abs === 2 ? 0.85 : 0.7;
+              const zIndex = 100 - abs;
+
               return (
                 <div
-                  key={image.id}
-                  className={`absolute transition-all duration-500 cursor-pointer ${
-                    isCenter ? "z-20 scale-110" : "z-10 scale-75 opacity-50"
-                  }`}
+                  key={i}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 will-change-transform transition-transform duration-700 ease-out origin-center"
                   style={{
-                    transform: `translateX(${(offset - 1) * 300}px) rotateY(${(offset - 1) * 20}deg)`,
+                    transform: `translateX(${translateX}px) rotateY(${rotateY}deg) scale(${scale})`,
                     transformStyle: "preserve-3d",
+                    zIndex,
+                    opacity,
                   }}
-                  onClick={() => setCurrentIndex(index)}
+                  onClick={() => setCurrent(i)}
                 >
-                  <div className="w-80 h-64 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl shadow-[var(--shadow-3d)] overflow-hidden group hover:shadow-[var(--shadow-glow)] transition-all duration-300">
-                    <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground group-hover:scale-110 transition-transform duration-300">
-                      <div className="text-center">
-                        <div className="text-6xl mb-4">🖼️</div>
-                        <p className="text-lg font-semibold">{image.category}</p>
-                      </div>
-                    </div>
+                  <div className="w-[22rem] h-[22rem] sm:w-[26rem] sm:h-[26rem] rounded-2xl shadow-2xl overflow-hidden border border-emerald-100 bg-emerald-50/10 hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-shadow">
+                    <img src={s} alt={`Slide ${i + 1}`} className="w-full h-full object-cover" loading="lazy" />
                   </div>
                 </div>
               );
             })}
           </div>
+        </div>
 
-          {/* Navigation */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30"
-            onClick={prevSlide}
+        {/* Arrows */}
+        <div className="absolute top-1/2 left-0 right-0 flex justify-between items-center px-6 sm:px-10 -translate-y-1/2 text-emerald-700 text-4xl">
+          <button
+            onClick={previousSlide}
+            className="bg-white/90 p-2 rounded-full shadow-md hover:bg-emerald-100 hover:scale-110 transition-all duration-300"
           >
-            <ChevronLeft size={32} />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-30"
+            <BsFillArrowLeftCircleFill />
+          </button>
+          <button
             onClick={nextSlide}
+            className="bg-white/90 p-2 rounded-full shadow-md hover:bg-emerald-100 hover:scale-110 transition-all duration-300"
           >
-            <ChevronRight size={32} />
-          </Button>
+            <BsFillArrowRightCircleFill />
+          </button>
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
-          {images.map((_, index) => (
+        <div className="mt-10 flex justify-center gap-3">
+          {slides.map((_, i) => (
             <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentIndex ? "bg-primary w-8" : "bg-muted-foreground/30"
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`transition-all duration-300 rounded-full ${
+                i === current
+                  ? "w-5 h-5 bg-emerald-600 shadow-[0_0_12px_2px_rgba(16,185,129,0.6)]"
+                  : "w-3.5 h-3.5 bg-emerald-200 hover:bg-emerald-300"
               }`}
-            />
+            ></button>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Gallery;
+}
