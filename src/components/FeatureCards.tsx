@@ -1,21 +1,26 @@
-import { Recycle, Sprout, Globe } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import imgRecycling from "@/assets/14.jpg";
+import imgOrganic from "@/assets/rdf.jpg";
+import imgEcosystem from "@/assets/worm.jpg";
 
 const features = [
   {
-    icon: Recycle,
+    image: imgRecycling,
     title: "Recycling",
-    description: "Advanced recycling solutions transforming waste into valuable resources for a circular economy.",
+    description:
+      "Advanced recycling solutions transforming waste into valuable resources for a circular economy.",
   },
   {
-    icon: Sprout,
+    image: imgOrganic,
     title: "Organic Solutions",
-    description: "Converting organic waste into nutrient-rich compost, supporting sustainable agriculture.",
+    description:
+      "Converting organic waste into nutrient-rich compost, supporting sustainable agriculture.",
   },
   {
-    icon: Globe,
+    image: imgEcosystem,
     title: "Ecosystem",
-    description: "Building a holistic ecosystem that connects waste management with environmental conservation.",
+    description:
+      "Building a holistic ecosystem that connects waste management with environmental conservation.",
   },
 ];
 
@@ -43,7 +48,11 @@ const FeatureCards = () => {
               }}
             >
               <div className="mb-6 inline-flex p-6 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                <feature.icon size={48} className="text-primary group-hover:animate-float" />
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="w-24 h-24 object-contain group-hover:animate-float transition-transform duration-300"
+                />
               </div>
               <h3 className="text-2xl font-semibold mb-4 text-card-foreground group-hover:text-primary transition-colors">
                 {feature.title}
