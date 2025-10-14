@@ -13,10 +13,7 @@ const JoinMission = () => {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl animate-float-slow" />
       </div>
 
-      {/* Globe background */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-10">
-        <Globe size={400} className="animate-tilt text-foreground" />
-      </div>
+      
 
       <div className="container mx-auto px-4 text-center relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-slide-in text-foreground">
@@ -31,7 +28,7 @@ const JoinMission = () => {
         </p>
         <Button
           size="lg"
-          className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg animate-glow"
+          className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
         >
           Get Involved
         </Button>
