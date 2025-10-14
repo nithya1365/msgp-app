@@ -74,12 +74,12 @@ const HeroCarousel = () => {
           {/* Content */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center px-4 animate-slide-in">
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight font-nunito">
                 {slide.quote}
               </h2>
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-[var(--shadow-glow)] animate-glow"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-[var(--shadow-glow)]"
               >
                 Read More
               </Button>

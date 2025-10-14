@@ -2,7 +2,7 @@ const QuoteSection = () => {
   return (
     <section className="py-16 bg-gradient-to-r from-secondary/20 to-background">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold bg-clip-text bg-[var(--gradient-glow)] animate-glow">
+        <h2 className="text-3xl md:text-5xl font-bold bg-clip-text bg-[var(--gradient-glow)] ">
           INDIA’S WASTE TECH PARK PIONEER<br />
 LEADING THE PACK<br />
 IN INTEGRATED SOLID WASTE MANAGEMENT<br />
