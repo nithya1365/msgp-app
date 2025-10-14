@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import partner1 from "@/assets/bbmp.jpg";
 import partner2 from "@/assets/bial.jpg";
 import partner3 from "@/assets/brigade.png";
@@ -11,9 +13,6 @@ import partner9 from "@/assets/mcf.jpg";
 import partner10 from "@/assets/rdf.jpg";
 
 const PartnersCarousel = () => {
-  const [offset, setOffset] = useState(0);
-
-  // Partner logos
   const partners = [
     { id: 1, name: "Partner 1", image: partner1 },
     { id: 2, name: "Partner 2", image: partner2 },
@@ -27,40 +26,82 @@ const PartnersCarousel = () => {
     { id: 10, name: "Partner 10", image: partner10 },
   ];
 
+  const [offset, setOffset] = useState(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const cardWidth = 200; // px (approx width + gap)
+  const scrollSpeed = 1; // px per frame
+  const intervalMs = 16; // ~60fps
+
+  // Auto-scroll effect
   useEffect(() => {
     const timer = setInterval(() => {
-      setOffset((prev) => (prev + 1) % (partners.length * 200));
-    }, 3000);
+      setOffset((prev) => {
+        const totalWidth = partners.length * cardWidth;
+        return (prev + scrollSpeed) % totalWidth;
+      });
+    }, intervalMs);
+
     return () => clearInterval(timer);
   }, [partners.length]);
 
+  // Manual controls
+  const scrollLeft = () => {
+    setOffset((prev) => {
+      const totalWidth = partners.length * cardWidth;
+      return (prev - cardWidth + totalWidth) % totalWidth;
+    });
+  };
+
+  const scrollRight = () => {
+    setOffset((prev) => {
+      const totalWidth = partners.length * cardWidth;
+      return (prev + cardWidth) % totalWidth;
+    });
+  };
+
   return (
-    <section className="py-20 bg-muted">
+    <section className="py-20 bg-muted relative">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-16">Our Partners</h2>
-        <div className="relative overflow-hidden">
+        <h2 className="text-4xl font-bold text-center mb-16">
+          Our Partners
+        </h2>
+        <div className="relative overflow-hidden" ref={containerRef}>
+          {/* Slides container */}
           <div
-            className="flex gap-8 transition-transform duration-1000"
-            style={{ transform: `translateX(-${offset}px)` }}
+            className="flex gap-8 transition-transform ease-linear"
+            style={{
+              transform: `translateX(-${offset}px)`,
+              width: `${partners.length * 2 * cardWidth}px`,
+            }}
           >
             {[...partners, ...partners].map((partner, index) => (
               <div
                 key={`${partner.id}-${index}`}
                 className="flex-shrink-0 w-48 h-32 bg-card rounded-xl shadow-lg flex items-center justify-center hover:brightness-110 transition-all duration-300 hover:scale-105 border border-border"
               >
-                <div className="text-center px-4">
-                  <img
-                    src={partner.image}
-                    alt={partner.name}
-                    className="mx-auto max-h-16 max-w-[140px] object-contain"
-                  />
-                  {partner.id > 10 && (
-                    <p className="mt-2 text-xs font-semibold text-muted-foreground truncate">{partner.name}</p>
-                  )}
-                </div>
+                <img
+                  src={partner.image}
+                  alt={partner.name}
+                  className="mx-auto max-h-16 max-w-[140px] object-contain"
+                />
               </div>
             ))}
           </div>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={scrollLeft}
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/70 p-2 rounded-full hover:bg-white shadow"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/70 p-2 rounded-full hover:bg-white shadow"
+          >
+            <ChevronRight size={24} />
+          </button>
         </div>
       </div>
     </section>
