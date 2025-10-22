@@ -1,65 +1,64 @@
 import { Card } from "@/components/ui/card";
-import imgRecycling from "@/assets/14.jpg";
-import imgOrganic from "@/assets/rdf.jpg";
-import imgEcosystem from "@/assets/worm.jpg";
 
 const features = [
   {
-    image: imgRecycling,
     title: "Recycling",
+    image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=400",
     description:
-      "Advanced recycling solutions transforming waste into valuable resources for a circular economy.",
+      "Transforming waste into valuable resources through innovative recycling for a circular economy.",
   },
   {
-    image: imgOrganic,
     title: "Organic Solutions",
+    image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400",
     description:
-      "Converting organic waste into nutrient-rich compost, supporting sustainable agriculture.",
+      "Turning organic waste into nutrient-rich compost to sustain healthy agriculture.",
   },
   {
-    image: imgEcosystem,
     title: "Ecosystem",
+    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400",
     description:
-      "Building a holistic ecosystem that connects waste management with environmental conservation.",
+      "Connecting waste management, communities, and nature into one thriving, sustainable ecosystem.",
   },
 ];
 
 const FeatureCards = () => {
   return (
     <section className="py-20 bg-background relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         <h2 className="text-4xl font-bold text-center mb-16 text-foreground">
           Core Solutions
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
+
+        <div className="grid md:grid-cols-3 gap-12 justify-items-center">
+          {features.map((f, i) => (
             <Card
-              key={index}
-              className="group p-8 text-center transition-all duration-500 hover:-translate-y-4 hover:shadow-[var(--shadow-3d)] cursor-pointer border-2 hover:border-primary/50 animate-scale-in bg-card"
-              style={{
-                animationDelay: `${index * 0.2}s`,
-                transformStyle: "preserve-3d",
-              }}
+              key={i}
+              className="feature-card group relative w-[300px] h-[240px] cursor-pointer border border-border 
+                         transition-all duration-500 ease-in-out hover:w-[320px] hover:h-[340px] p-6 flex flex-col items-center justify-center"
             >
-              <div className="mb-6 inline-flex p-6 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 group-hover:from-primary/30 group-hover:to-secondary/30 transition-all duration-300">
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-24 h-24 object-contain group-hover:animate-float transition-transform duration-300"
-                />
+              <div className="feature-border border-primary"></div>
+
+              {/* Minimal initial view */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 group-hover:opacity-0">
+                <h3 className="text-lg uppercase tracking-[6px] text-primary font-medium transition-all duration-300 group-hover:tracking-[2px]">
+                  {f.title}
+                </h3>
               </div>
-              <h3 className="text-2xl font-semibold mb-4 text-card-foreground group-hover:text-primary transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
-              </p>
+
+              {/* Revealed content */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 p-6">
+                <img
+                  src={f.image}
+                  alt={f.title}
+                  className="w-20 h-20 object-cover mb-4 rounded-full border border-primary/40"
+                />
+                <h4 className="text-xl font-semibold mb-2 text-primary">
+                  {f.title}
+                </h4>
+                <p className="text-sm text-muted-foreground text-center px-4 leading-relaxed">
+                  {f.description}
+                </p>
+              </div>
             </Card>
           ))}
         </div>

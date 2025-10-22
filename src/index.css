@@ -97,4 +97,68 @@ All colors MUST be HSL.
   .perspective-1000 {
     perspective: 1000px;
   }
+  /* Uiverse-style animated border and transitions */
+
+.feature-card {
+  background: #243137;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.6s ease-in-out;
+  display: grid;
+  place-content: center;
+}
+
+.feature-card:hover {
+  border-radius: 0;
+  transform: scale(1.08);
+}
+
+.feature-border {
+  position: absolute;
+  inset: 0px;
+  border: 2px solid #bd9f67;
+  opacity: 0;
+  transform: rotate(10deg);
+  transition: all 0.6s ease-in-out;
+}
+
+.feature-card:hover .feature-border {
+  inset: 15px;
+  opacity: 1;
+  transform: rotate(0);
+}
+
+/* subtle background shimmer animation */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+  animation: trail 1.2s ease-in-out;
+}
+
+@keyframes trail {
+  0% {
+    background: linear-gradient(
+      90deg,
+      rgba(189, 159, 103, 0) 90%,
+    );
+    opacity: 0;
+  }
+  30%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+
 }
