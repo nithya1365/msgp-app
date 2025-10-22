@@ -1,32 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import hero3 from "@/assets/hero-3.jpg";
-import hero4 from "@/assets/hero-4.jpg";
+import { gsap } from "gsap";
+import vidhan from "@/assets/vidhan.png";
 
 const slides = [
   {
-    image: hero1,
-    quote: "Meeting Solid Waste Management needs of Bengaluru",
-  },
-  {
-    image: hero2,
-    quote: "India's waste tech park pioneer leading the pack in integrated solid waste management",
-  },
-  {
-    image: hero3,
-    quote: "Turning life-threatening waste into enlivening",
-  },
-  {
-    image: hero4,
-    quote: "Keeping the environment healthy and economy sustainable",
+    image: vidhan,
+    quote: "Meeting Solid Waste Management needs",
   },
 ];
 
 const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const vidhanRef = useRef<HTMLImageElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -34,6 +22,30 @@ const HeroCarousel = () => {
     }, 5000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (vidhanRef.current && textRef.current) {
+      // Reset positions
+      gsap.set(vidhanRef.current, { y: "-100%", opacity: 1 });
+      gsap.set(textRef.current, { opacity: 0, y: 20 });
+
+      // Animate vidhan sliding down from top
+      gsap.to(vidhanRef.current, {
+        y: 0,
+        duration: 2,
+        ease: "power2.out",
+        onComplete: () => {
+          // Text emerges from behind after vidhan is in position
+          gsap.to(textRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out"
+          });
+        }
+      });
+    }
+  }, [currentSlide]);
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
@@ -64,25 +76,23 @@ const HeroCarousel = () => {
             index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
-          <img
-            src={slide.image}
-            alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover"
-          />
+          {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-accent/80 to-accent/40" />
           
-          {/* Content */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center px-4 animate-slide-in">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight font-nunito">
+          {/* Vidhan image sliding down */}
+          <img
+            ref={vidhanRef}
+            src={slide.image}
+            alt={`Slide ${index + 1}`}
+            className="absolute left-1/2 -translate-x-1/2 top-24 w-3/4 h-full object-cover z-10"
+          />
+          
+          {/* Content emerging from behind (placed behind the image) */}
+          <div ref={textRef} className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+            <div className="text-center px-4 -mt-6 md:-mt-[210px]">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white mb-8 leading-tight font-serif uppercase tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
                 {slide.quote}
               </h2>
-              <Button
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-[var(--shadow-glow)]"
-              >
-                Read More
-              </Button>
             </div>
           </div>
         </div>

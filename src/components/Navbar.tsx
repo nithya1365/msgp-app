@@ -1,9 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { Phone, Mail, Facebook, Instagram, Linkedin,Youtube, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const rightIconsRef = useRef<HTMLDivElement | null>(null);
+  const truckRef = useRef<HTMLImageElement | null>(null);
+  const iconRefs = useRef<HTMLAnchorElement[]>([]);
+  iconRefs.current = [];
+
+  const addIconRef = (el: HTMLAnchorElement | null) => {
+    if (el && !iconRefs.current.includes(el)) {
+      iconRefs.current.push(el);
+    }
+  };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -12,6 +23,30 @@ const Navbar = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!rightIconsRef.current || !truckRef.current) return;
+
+    const container = rightIconsRef.current;
+    const truck = truckRef.current;
+    const icons = iconRefs.current;
+
+    const ctx = gsap.context(() => {
+      // Truck starts from far right, moves slowly to its final position
+      gsap.set(truck, { x: 200, opacity: 1 }); // Start from far right
+      gsap.set(icons, { opacity: 0, y: -10 });
+
+      const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+      tl.to(truck, { x: 0, duration: 2.5 }) // Slow movement
+        .to(
+          icons,
+          { opacity: 1, y: 0, stagger: 0.2, duration: 0.4 },
+          "-=0.8" // Icons appear after truck has passed
+        );
+    }, rightIconsRef);
+
+    return () => ctx.revert();
   }, []);
 
   const navLinks = [
@@ -27,7 +62,7 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top Bar */}
-      <div className="bg-accent text-accent-foreground py-2 px-4 md:px-8">
+      <div className="bg-white text-gray-900 py-2 px-4 md:px-8">
         <div className="container mx-auto flex justify-between items-center text-sm">
           <div className="flex gap-4 items-center">
             <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-secondary transition-colors">
@@ -39,17 +74,26 @@ const Navbar = () => {
               <span className="hidden md:inline">info@msgp.co.in</span>
             </a>
           </div>
-          <div className="flex gap-3">
-            <a href="https://www.facebook.com/people/MSGP-Infra-Tech-Pvt-Ltd/100079226423204/" className="hover:text-secondary transition-colors">
+          <div ref={rightIconsRef} className="flex items-center gap-3 min-w-[220px] justify-end">
+            {/* Truck */}
+            <img
+              ref={truckRef}
+              src="src/assets/truck.jpeg"
+              alt="Truck"
+              className="h-6 w-auto select-none pointer-events-none"
+            />
+
+            {/* Social Icons */}
+            <a ref={addIconRef} href="https://www.facebook.com/people/MSGP-Infra-Tech-Pvt-Ltd/100079226423204/" className="hover:text-secondary transition-colors">
               <Facebook size={16} />
             </a>
-            <a href="#" className="hover:text-secondary transition-colors">
+            <a ref={addIconRef} href="#" className="hover:text-secondary transition-colors">
               <Instagram size={16} />
             </a>
-            <a href="#" className="hover:text-secondary transition-colors">
+            <a ref={addIconRef} href="#" className="hover:text-secondary transition-colors">
               <Linkedin size={16} />
             </a>
-            <a href="#" className="hover:text-secondary transition-colors">
+            <a ref={addIconRef} href="#" className="hover:text-secondary transition-colors">
               <Youtube size={16} />
             </a>
           </div>
@@ -58,10 +102,8 @@ const Navbar = () => {
 
       {/* Main Navbar */}
       <nav
-        className={`transition-all duration-300 ${
-          isScrolled
-            ? "bg-[var(--glass-bg)] backdrop-blur-lg border-b border-[var(--glass-border)] shadow-lg"
-            : "bg-card"
+        className={`transition-all duration-300 bg-green-600 text-white ${
+          isScrolled ? "shadow-lg" : ""
         }`}
       >
         <div className="container mx-auto px-4 md:px-8">
@@ -80,10 +122,9 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="relative text-foreground hover:text-primary transition-colors font-medium group"
+                  className="relative text-white hover:text-white transition-all duration-300 font-medium group hover:text-lg"
                 >
                   {link.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}
             </div>
@@ -106,7 +147,7 @@ const Navbar = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block py-2 text-foreground hover:text-primary transition-colors"
+                  className="block py-2 text-white hover:text-white transition-all duration-300 hover:text-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}

@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroCarousel from "@/components/HeroCarousel";
+import ScrollVideo from "@/components/ScrollVideo";
 import QuoteSection from "@/components/QuoteSection";
 import FeatureCards from "@/components/FeatureCards";
 import CompanyOverview from "@/components/CompanyOverview";
@@ -17,6 +18,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <HeroCarousel />
+  <ScrollVideo />
       <QuoteSection />
       <FeatureCards />
       <CompanyOverview />
