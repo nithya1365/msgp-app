@@ -1,0 +1,102 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+.banner-container {
+  position: fixed; /* Fixed to stay at top */
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  height: 40px; /* Smaller height to not hide truck */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  background-color: #e5e7eb; /* Dull gray background */
+  transition: background-color 1.2s ease-in-out, transform 0.3s ease-out;
+  cursor: pointer;
+  width: 100%;
+  z-index: 1000; /* Below navbar but above content */
+  transform: translateY(0);
+}
+
+/* Hide banner when scrolling down */
+.banner-container.scrolled {
+  transform: translateY(-100%);
+}
+
+.banner-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.banner-text {
+  color: #9ca3af; /* Boring gray text initially */
+  font-size: 0.875rem;
+  font-weight: 400;
+  white-space: nowrap;
+  display: inline-block;
+  margin: 0;
+  position: absolute;
+}
+
+/* Individual character styling */
+.char {
+  display: inline-block;
+  color: #9ca3af; /* Dull gray */
+  transition: color 0.15s ease, text-shadow 0.15s ease, font-weight 0.15s ease;
+}
+
+/* Vibrant character after broom passes */
+.char.vibrant {
+  color: #065f46; /* Dark green */
+  font-weight: 600;
+  text-shadow: 0 0 4px rgba(6, 95, 70, 0.15); /* Subtle professional glow */
+}
+
+/* Marquee active - continuous scrolling from right to left */
+.banner-text.marquee-active {
+  animation: marquee-scroll 15s linear infinite;
+  animation-play-state: running; /* Starts running immediately */
+}
+
+/* Broom Styling - Normal size */
+.broom {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(-10deg);
+  z-index: 100;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+}
+
+.broom-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+  display: block;
+}
+
+/* Marquee animation - continuous extreme right to extreme left */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100vw);
+  }
+}
+
+/* Vibrant Background After Sweep */
+.banner-container.vibrant {
+  background-color: #d1fae5; /* Light fresh green */
+}
