@@ -120,14 +120,17 @@ const Navbar = () => {
         </div>
 
         {/* Main Navbar */}
-        <nav className={`transition-all duration-300 ${isScrolled ? "shadow-lg" : ""}`}>
-          <div className="container mx-auto px-4 md:px-8 flex justify-center">
+        <nav className={`transition-all duration-300` }>
+          <div className={`container mx-auto px-4 md:px-8 flex justify-center `}>
             {/* Rounded Navigation Bar */}
-            <div className={`rounded-full px-10 py-2 mt-4 shadow-lg w-full max-w-4xl border transition-all duration-300 ${
-              isPastHero 
-                ? "bg-white border-gray-200" 
-                : "bg-white/20 backdrop-blur-xl border-white/30"
-            }`}>
+            <div
+  className={`rounded-full px-10 py-2 mt-4 w-full max-w-4xl border transition-all duration-300 ${
+    isPastHero
+      ? "bg-white border-gray-200"
+      : "bg-white/20 backdrop-blur-xl border-white/30"
+  } ${isScrolled ? "shadow-lg" : ""}`}
+>
+
               <div className="flex gap-8 items-center justify-center">
                 {/* {navLinks.map((link) => (
                   <a
@@ -150,7 +153,8 @@ const Navbar = () => {
       isPastHero
         ? "text-gray-900 hover:text-green-600 hover:border-green-600"
         : "text-white hover:text-white hover:border-white"
-    }`}
+    }
+    `}
   >
     {link.name}
   </a>

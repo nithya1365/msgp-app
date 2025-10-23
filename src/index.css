@@ -20,6 +20,25 @@
   font-display: swap;
 }
 
+/* dancing font */
+@font-face {
+  font-family: 'DancingFont';
+  src: url('/DancingScript-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*InconsolataFont */
+@font-face {
+  font-family: 'InconsolataFont';
+  src: url('\Inconsolata-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 /* Caluxe Font */
 @font-face {
   font-family: 'Caluxe';
