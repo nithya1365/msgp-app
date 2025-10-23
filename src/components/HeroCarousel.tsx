@@ -94,7 +94,7 @@ const HeroCarousel = () => {
           {/* Content emerging from behind (placed behind the image) */}
           <div className="slide-text absolute inset-0 flex items-center justify-center z-5 pointer-events-none">
             <div className="text-center px-4 -mt-6 md:-mt-[210px]">
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white mb-8 leading-tight font-serif uppercase tracking-tight drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 leading-tight capitalize tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]" style={{ fontFamily: 'Caluxe, serif' }}>
                 {slide.quote}
               </h2>
             </div>

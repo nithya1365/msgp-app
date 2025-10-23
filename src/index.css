@@ -2,6 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
+/* DKS Claremonts Font */
+@font-face {
+  font-family: 'DKS Claremonts';
+  src: url('/DKS-Claremonts-Personal-Use.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Comel Barier Font */
+@font-face {
+  font-family: 'Comel Barier';
+  src: url('/Comela-Barier-BF68f780ee7338b.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Caluxe Font */
+@font-face {
+  font-family: 'Caluxe';
+  src: url('/Caluxe-BF68f8475186d82.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
