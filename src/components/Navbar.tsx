@@ -126,7 +126,7 @@ const Navbar = () => {
             <div
   className={`rounded-full px-10 py-2 mt-4 w-full max-w-4xl border transition-all duration-300 ${
     isPastHero
-      ? "bg-white border-gray-200"
+      ? "bg-[#F7F0E6] border-gray-200"
       : "bg-white/20 backdrop-blur-xl border-white/30"
   } ${isScrolled ? "shadow-lg" : ""}`}
 >
@@ -151,7 +151,7 @@ const Navbar = () => {
     href={link.href}
     className={`transition-all duration-300 font-medium text-sm md:text-base px-3 py-1 rounded-full border-2 border-transparent ${
       isPastHero
-        ? "text-gray-900 hover:text-green-600 hover:border-green-600"
+        ? "text-gray-900 hover:text-[#414F30] hover:border-[#414F30]"
         : "text-white hover:text-white hover:border-white"
     }
     `}

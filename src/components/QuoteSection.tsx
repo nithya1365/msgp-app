@@ -1,6 +1,9 @@
 const QuoteSection = () => {
   return (
-    <section className="py-16 bg-gradient-to-r from-secondary/20 to-background">
+    <section
+      className="py-16"
+      style={{ '--green1': '#354024', backgroundColor: 'var(--green1)', color: '#e5d7c4' } as React.CSSProperties}
+    >
       <div className="container mx-auto px-4 text-center">
       <h2
  className="text-3xl md:text-4xl font-bold tracking-wide bg-clip-text bg-[var(--gradient-glow)]"
@@ -18,5 +21,4 @@ IN INTEGRATED SOLID WASTE MANAGEMENT<br />   </h2>
     </section>
   );
 };
-
 export default QuoteSection;
