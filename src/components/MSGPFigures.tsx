@@ -75,7 +75,11 @@ const MSGPFigures = () => {
   }, [hasAnimated]);
 
   return (
-    <section ref={sectionRef} id="facilities" className="py-20 bg-accent text-accent-foreground relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="facilities"
+      className="py-20 bg-[#142c14] text-[#e4eb9c] relative overflow-hidden"
+    >
       {/* Animated background particles */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         {[...Array(20)].map((_, i) => {
@@ -137,7 +141,7 @@ const MSGPFigures = () => {
         <h2 className="text-4xl font-bold text-center mb-4">
           MSGP Figures
         </h2>
-        <div className="w-24 h-1 bg-primary mx-auto mb-16 rounded-full" />
+        <div className="w-24 h-1 bg-[#e4eb9c] mx-auto mb-16 rounded-full" />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
@@ -164,32 +168,28 @@ const MSGPFigures = () => {
                       cx="64"
                       cy="64"
                       r="56"
-                      stroke="hsl(var(--primary))"
+                      stroke="#E2F0A8"
                       strokeWidth="4"
                       fill="none"
                       strokeDasharray={`${2 * Math.PI * 56}`}
                       strokeDashoffset={`${2 * Math.PI * 56 * (1 - (hasAnimated ? 1 : 0))}`}
                       className="transition-all duration-2000"
-                      style={{ filter: 'drop-shadow(0 0 8px hsl(var(--primary)))' }}
+                      style={{ filter: 'drop-shadow(0 0 8px #E2F0A8)' }}
                     />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <stat.icon 
-                      size={40} 
-                      className="text-primary group-hover:scale-110 transition-transform duration-300" 
-                    />
+                     <stat.icon 
+                       size={40} 
+                       className="text-[#E2F0A8] group-hover:scale-110 transition-transform duration-300" 
+                     />
                   </div>
                 </div>
-                <div className="text-5xl font-bold mb-2 text-primary animate-count-up group-hover:scale-110 transition-transform duration-300">
+                <div className="text-5xl font-bold mb-2 text-[#E2F0A8] animate-count-up group-hover:scale-110 transition-transform duration-300">
                   {counts[index].toLocaleString()}{stat.suffix}
                 </div>
-      <div 
-  className={`text-lg font-medium opacity-90${index === 3 ? " mt-14" : ""}`}
->
-  {stat.label}
-</div>
-
-                
+<div className={`text-lg font-medium opacity-90 ${index === 3 ? 'mt-20' : 'mt-9'}`}>
+                  {stat.label}
+                </div>                
                 {/* Expanded content */}
                 <div 
                   className={`overflow-hidden transition-all duration-500 ${

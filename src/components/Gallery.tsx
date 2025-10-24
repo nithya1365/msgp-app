@@ -74,16 +74,16 @@ export default function Gallery() {
         </div>
 
         {/* Arrows */}
-        <div className="absolute top-1/2 left-0 right-0 flex justify-between items-center px-6 sm:px-10 -translate-y-1/2 text-emerald-700 text-4xl">
+        <div className="absolute top-1/2 left-0 right-0 flex justify-between items-center px-6 sm:px-1 -translate-y-1/2 text-[#142c14] text-4xl">
           <button
             onClick={previousSlide}
-            className="bg-white/90 p-2 rounded-full shadow-md hover:bg-emerald-100 hover:scale-110 transition-all duration-300"
+            className="bg-white/90 p-2 rounded-full shadow-md hover:bg-[#E2F0A8] hover:scale-110 transition-all duration-300"
           >
             <BsFillArrowLeftCircleFill />
           </button>
           <button
             onClick={nextSlide}
-            className="bg-white/90 p-2 rounded-full shadow-md hover:bg-emerald-100 hover:scale-110 transition-all duration-300"
+            className="bg-white/90 p-2 rounded-full shadow-md hover:bg-[#E2F0A8] hover:scale-110 transition-all duration-300"
           >
             <BsFillArrowRightCircleFill />
           </button>
