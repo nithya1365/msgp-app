@@ -26,37 +26,116 @@ const missions = [
 
 const Mission = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-accent via-accent/80 to-accent text-accent-foreground relative overflow-hidden">
-      {/* Animated wave background */}
-      <div className="absolute inset-0 opacity-10">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="wave" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-              <path d="M0 50 Q 25 30, 50 50 T 100 50" stroke="currentColor" fill="none" strokeWidth="2" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#wave)" className="animate-shimmer" />
-        </svg>
+    <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#142c14' }}>
+      {/* Animated organic background patterns */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-10 left-10 w-64 h-64 rounded-full blur-3xl animate-pulse" style={{ backgroundColor: '#e4eb9c' }}></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full blur-3xl animate-pulse delay-1000" style={{ backgroundColor: '#e2f0a8' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 rounded-full blur-3xl animate-pulse delay-500" style={{ backgroundColor: '#e4eb9c' }}></div>
+      </div>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 rounded-full animate-float opacity-20"
+            style={{
+              backgroundColor: i % 2 === 0 ? '#e4eb9c' : '#e2f0a8',
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${3 + Math.random() * 4}s`
+            }}
+          />
+        ))}
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-4xl font-bold text-center mb-16">Mission MSGP</h2>
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold mb-4 animate-fade-in" style={{ color: '#e4eb9c' }}>
+            Mission MSGP
+          </h2>
+          <div className="w-24 h-1 mx-auto rounded-full animate-shimmer" style={{ backgroundColor: '#e2f0a8' }}></div>
+        </div>
+        
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {missions.map((mission, index) => (
             <div
               key={index}
-              className="bg-card/10 backdrop-blur-sm p-6 rounded-xl border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:scale-105 animate-slide-in group"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="relative group cursor-pointer h-full"
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
-              <div className="mb-4 inline-flex p-4 rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors">
-                <mission.icon size={32} className="text-primary group-hover:animate-float" />
+              {/* Card content */}
+              <div className="relative p-8 rounded-2xl backdrop-blur-sm transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl border h-full flex flex-col"
+                   style={{ 
+                     backgroundColor: 'rgba(228, 235, 156, 0.05)',
+                     borderColor: 'rgba(228, 235, 156, 0.2)'
+                   }}>
+                
+                {/* Icon container with animated gradient */}
+                <div className="mb-6 relative">
+                  <div className="inline-flex p-5 rounded-2xl relative overflow-hidden transition-all duration-500 group-hover:scale-110"
+                       style={{ backgroundColor: 'rgba(228, 235, 156, 0.15)' }}>
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer"
+                         style={{ 
+                           background: 'linear-gradient(45deg, rgba(228, 235, 156, 0.2), rgba(226, 240, 168, 0.2))'
+                         }}></div>
+                    <mission.icon size={36} className="relative z-10 transition-transform duration-500 group-hover:rotate-12" 
+                                  style={{ color: '#e4eb9c' }} />
+                  </div>
+                </div>
+
+                <h3 className="text-2xl font-bold mb-4 transition-colors duration-300" 
+                    style={{ color: '#e4eb9c' }}>
+                  {mission.title}
+                </h3>
+                
+                <p className="leading-relaxed transition-colors duration-300 flex-grow" 
+                   style={{ color: '#e2f0a8', opacity: 0.85 }}>
+                  {mission.description}
+                </p>
+
+                {/* Bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
+                     style={{ 
+                       background: 'linear-gradient(90deg, transparent, #e4eb9c, #e2f0a8, transparent)'
+                     }}></div>
               </div>
-              <h3 className="text-xl font-semibold mb-3">{mission.title}</h3>
-              <p className="text-accent-foreground/80 leading-relaxed">{mission.description}</p>
             </div>
           ))}
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+        .animate-shimmer {
+          animation: shimmer 3s ease-in-out infinite;
+        }
+        .animate-fade-in {
+          animation: fade-in 1s ease-out;
+        }
+        .delay-500 {
+          animation-delay: 500ms;
+        }
+        .delay-1000 {
+          animation-delay: 1000ms;
+        }
+      `}</style>
     </section>
   );
 };
