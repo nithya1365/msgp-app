@@ -147,7 +147,7 @@ const MSGPFigures = () => {
               className="text-center group animate-scale-in cursor-pointer transition-all duration-300 hover:scale-105 hover:-translate-y-2"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="bg-background/5 backdrop-blur-sm rounded-2xl p-6 border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20">
+<div className="bg-background/5 backdrop-blur-sm rounded-2xl p-6 border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/20 min-h-[370px]">
                 <div className="relative inline-block mb-6">
                   {/* Circular progress ring */}
                   <svg className="w-32 h-32 transform -rotate-90">
@@ -183,7 +183,12 @@ const MSGPFigures = () => {
                 <div className="text-5xl font-bold mb-2 text-primary animate-count-up group-hover:scale-110 transition-transform duration-300">
                   {counts[index].toLocaleString()}{stat.suffix}
                 </div>
-                <div className="text-lg font-medium opacity-90">{stat.label}</div>
+      <div 
+  className={`text-lg font-medium opacity-90${index === 3 ? " mt-14" : ""}`}
+>
+  {stat.label}
+</div>
+
                 
                 {/* Expanded content */}
                 <div 
