@@ -78,7 +78,7 @@ const MSGPFigures = () => {
     <section
       ref={sectionRef}
       id="facilities"
-      className="py-20 bg-[#142c14] text-[#e4eb9c] relative overflow-hidden"
+      className="py-20 bg-[#053725] text-[#e6ebb2ff] relative overflow-hidden"
     >
       {/* Animated background particles */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -92,7 +92,7 @@ const MSGPFigures = () => {
           return (
             <div
               key={i}
-              className="absolute w-2 h-2 bg-primary rounded-full transition-transform duration-300"
+              className="absolute w-2 h-2 bg-[#e6ebb2ff] rounded-full transition-transform duration-300"
               style={{
                 left: `${(i * 5) % 100}%`,
                 top: `${((i * 7) % 100)}%`,
@@ -141,7 +141,7 @@ const MSGPFigures = () => {
         <h2 className="text-4xl font-bold text-center mb-4">
           MSGP Figures
         </h2>
-        <div className="w-24 h-1 bg-[#e4eb9c] mx-auto mb-16 rounded-full" />
+        <div className="w-24 h-1 bg-[#e6ebb2ff] mx-auto mb-16 rounded-full" />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (

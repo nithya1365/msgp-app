@@ -2,7 +2,7 @@ const QuoteSection = () => {
   return (
     <section
       className="py-16"
-      style={{ '--green1': '#142c14', backgroundColor: 'var(--green1)', color: '#e4eb9c' } as React.CSSProperties}
+      style={{ '--green1': '#053725', backgroundColor: 'var(--green1)', color: '#e6ebb2ff' } as React.CSSProperties}
     >
       <div className="container mx-auto px-4 text-center">
       <h2

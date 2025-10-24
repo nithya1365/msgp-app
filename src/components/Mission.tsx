@@ -26,12 +26,15 @@ const missions = [
 
 const Mission = () => {
   return (
-    <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#142c14' }}>
-      {/* Animated organic background patterns */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-64 h-64 rounded-full blur-3xl animate-pulse" style={{ backgroundColor: '#e4eb9c' }}></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full blur-3xl animate-pulse delay-1000" style={{ backgroundColor: '#e2f0a8' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-80 h-80 rounded-full blur-3xl animate-pulse delay-500" style={{ backgroundColor: '#e4eb9c' }}></div>
+    <section
+      className="py-24 relative overflow-hidden"
+      style={{ backgroundColor: '#053725', color: '#e6ebb2ff' } as React.CSSProperties}
+    >
+       {/* Animated organic background patterns */}
+       <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-10 left-10 w-64 h-64 rounded-full blur-3xl animate-pulse" style={{ backgroundColor: '#e6ebb2ff' }}></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full blur-3xl animate-pulse delay-1000" style={{ backgroundColor: '#e6ebb2ff' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-80 h-80 rounded-full blur-3xl animate-pulse delay-500" style={{ backgroundColor: '#e6ebb2ff' }}></div>
       </div>
 
       {/* Floating particles */}
@@ -53,11 +56,11 @@ const Mission = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-bold mb-4 animate-fade-in" style={{ color: '#e4eb9c' }}>
-            Mission MSGP
-          </h2>
-          <div className="w-24 h-1 mx-auto rounded-full animate-shimmer" style={{ backgroundColor: '#e2f0a8' }}></div>
-        </div>
+          <h2 className="text-5xl md:text-6xl font-bold mb-4 animate-fade-in">
+             Mission MSGP
+           </h2>
+           <div className="w-24 h-1 mx-auto rounded-full animate-shimmer" style={{ backgroundColor: '#e2f0a8' }}></div>
+         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {missions.map((mission, index) => (
@@ -81,26 +84,33 @@ const Mission = () => {
                          style={{ 
                            background: 'linear-gradient(45deg, rgba(228, 235, 156, 0.2), rgba(226, 240, 168, 0.2))'
                          }}></div>
-                    <mission.icon size={36} className="relative z-10 transition-transform duration-500 group-hover:rotate-12" 
-                                  style={{ color: '#e4eb9c' }} />
+                    <mission.icon
+                      size={36}
+                      className="relative z-10 transition-transform duration-500 group-hover:rotate-12"
+                      style={{ color: '#e6ebb2ff' }}
+                    />
                   </div>
                 </div>
-
+ 
                 <h3 className="text-2xl font-bold mb-4 transition-colors duration-300" 
-                    style={{ color: '#e4eb9c' }}>
+                    style={{ color: '#e6ebb2ff' }}>
                   {mission.title}
                 </h3>
                 
-                <p className="leading-relaxed transition-colors duration-300 flex-grow" 
-                   style={{ color: '#e2f0a8', opacity: 0.85 }}>
+                <p
+                  className="leading-relaxed transition-colors duration-300 flex-grow"
+                  style={{ color: '#e6ebb2ff', opacity: 0.85 }}
+                >
                   {mission.description}
                 </p>
 
                 {/* Bottom accent line */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
-                     style={{ 
-                       background: 'linear-gradient(90deg, transparent, #e4eb9c, #e2f0a8, transparent)'
-                     }}></div>
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl opacity-0 group-hover:opacity-100 transition-all duration-500"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent, #e6ebb2ff, #E2F0A8, transparent)',
+                  }}
+                ></div>
               </div>
             </div>
           ))}
